@@ -15,9 +15,10 @@ DISH_CATEGORIES =  {
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nazwa restauracji')
+    city = models.CharField(max_length=100, verbose_name='Nazwa miasta', default='')
 
     def __str__(self):
-        return self.name
+        return self.name + ',' + self.city
 
 
 class Toppings(models.Model):
@@ -32,7 +33,7 @@ class Dish(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nazwa dania/napoju')
     price = models.IntegerField(verbose_name='Cena za danie')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    toppings = models.ManyToManyField(Toppings, related_name='dish_toppings_set')
+    toppings = models.ManyToManyField(Toppings, related_name='dish_toppings_set', blank=True)
     category = models.IntegerField(choices=DISH_CATEGORIES, verbose_name='Kategoria dania')
 
     def __str__(self):

@@ -4,7 +4,11 @@ from restaurant.models import Restaurant, Toppings, Dish
 
 # Register your models here.
 
-admin.site.register(Restaurant)
+
+@admin.register(Restaurant)
+class RestaurantAdmin(admin.ModelAdmin):
+    list_display = ('name', 'city')
+
 
 @admin.register(Toppings)
 class ToppingsAdmin(admin.ModelAdmin):
