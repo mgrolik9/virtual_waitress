@@ -1,0 +1,22 @@
+
+
+body {
+    background-color: whitesmoke;
+}
+
+
+.register-div {
+    width: 50%;
+    height: auto;
+}
+
+.home-div {
+    width: 70%;
+    height: auto;
+}
+
+
+.tab {
+  display: none;
+}
+

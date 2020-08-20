@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+</br>
+</br>
+<div align="center">
+    <div class="register-div">
+        <div class="card w-75">
+            <div class="card-body">
+                <h3 style="font-family: Lato-Light"> Create your account here</h3></br>
+                <hr class="my-4">
+                <form id="regForm" method="post" action="">
+                    {%  csrf_token %}
+
+                    <div class="tab">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label></br>
+                            {{ form.email }}
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            {% if form.email.errors %}
+                            <p style="color: darkred">E-mail is incorrect</p>
+                            {%  endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername">Username</label></br>
+                            {{ form.username }}
+                        </div>
+                    </div>
+
+                    <div class="tab">
+                         <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label></br>
+                            {{ form.password1 }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername">Password confirm</label></br>
+                            <small id="emailHelp" class="form-text text-muted">Repeat password.</small>
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+
+                    {% if form.errors %}
+                    <p style="color: darkred">Password is incorrect</p>
+                    {% endif %}
+
+                    <div style="overflow:auto;">
+                        <div style="float:right;">
+                            <button type="button" class="btn btn-dark" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                            <button type="button" class="btn btn-dark" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%  endblock %}
