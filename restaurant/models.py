@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.db import models
+
 
 # Create your models here.
 
-
-DISH_CATEGORIES =  {
+DISH_CATEGORIES = {
     (1, 'dinner'),
     (2, 'lunch'),
     (3, 'starters'),
@@ -14,8 +15,10 @@ DISH_CATEGORIES =  {
 
 
 class Restaurant(models.Model):
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='Nazwa restauracji')
     city = models.CharField(max_length=100, verbose_name='Nazwa miasta', default='')
+    image = models.ImageField(default='default_picture/default.JPG')
 
     def __str__(self):
         return self.name + ',' + self.city
