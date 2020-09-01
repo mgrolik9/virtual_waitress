@@ -12,9 +12,23 @@ class SignUpForm(forms.Form):
     password1 = forms.CharField(max_length=10, widget=PasswordInput)
     password2 = forms.CharField(max_length=10, widget=PasswordInput)
 
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        duplicate_users = User.objects.filter(email=data)
+        if duplicate_users.exists():
+            raise ValidationError('Email already exists')
+        return data
+
+    def clean_username(self):
+        data = self.cleaned_data['username']
+        duplicate_users = User.objects.filter(username=data)
+        if duplicate_users.exists():
+            raise ValidationError('User already exists')
+        return data
+
     def clean(self):
         cleaned_data = super().clean()
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
         if password1 != password2:
-            raise forms.ValidationError('Password is incorrect')
+            raise ValidationError('Password is incorrect')
