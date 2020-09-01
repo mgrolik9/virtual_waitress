@@ -15,27 +15,15 @@ class HomeView(TemplateView):
     template_name = 'home.html'
 
 
-class RegisterView(View):
+class RegisterView(FormView):
+    template_name = 'register.html'
+    form_class = SignUpForm
+    success_url = '/'
 
-    def get(self, request):
-        form = SignUpForm()
-        return render(request, 'register.html', locals())
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        email = form.cleaned_data['email']
+        password1 = form.cleaned_data['password1']
 
-    def post(self, request):
-        form = SignUpForm(request.POST)
-
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            password1 = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
-
-
-            User.objects.create_user(username=username,
-                                         password=password1,
-                                         email=email)
-
-            return redirect(reverse_lazy('home'))
-        return render(request, 'register.html', {'form': form})
-
-
+        User.objects.create_user(username=username, email=email, password=password1)
+        return super().form_valid(form)
