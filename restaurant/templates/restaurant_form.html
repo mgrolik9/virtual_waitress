@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+    background-image: url(https://live.staticflickr.com/3863/15085955416_f1be981444_b.jpg);
+    background-size: cover;
+}
+</style>
+<br>
+<br>
+
+<div align="center">
+    <h1 style="color: white; font-family: Lato">Welcome to restaurant creator</h1>
+        <h4 style="color: white; font-family: Lato-Regular">Take step by step in order to add your restaurant and start</h4>
+            <hr class="my-4">
+</div>
+<br>
+<br>
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">First step</div>
+                         <div class="card-body">
+                                <h5 class="card-title">Create restaurant profile</h5>
+                                <p class="card-text">As restaurant owner you need to register your place in our website.</p>
+                             <button id="add_restaurant" type="button" class="btn btn-dark">Add restaurant</button>
+                        </div>
+                    </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Second step</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Add menu</h5>
+                            <p class="card-text">After restaurant registration you should add positions to the menu.</p>
+                        <button type="button" class="btn btn-dark">Add menu</button>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Third step</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Start taking orders</h5>
+                            <p class="card-text">Now you can start to receive orders from quests.</p>
+                        <button type="button" class="btn btn-dark">Start</button>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-sm-1"></div>
+
+    </div>
+
+
+                   <div id="to_toogle">
+                      <div align="center">
+                       <div style="width:30%; height: auto">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Name of your restaurant</label></br>
+                                                {{ form.name }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>City name</label></br>
+                                                {{ form.city }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Restaurant logo</label></br>
+                                                {{ form.image }}
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                       </div>
+                      </div>
+                   </div>
+<br>
+<br>
+{% endblock %}
