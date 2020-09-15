@@ -1,4 +1,13 @@
 
+
+$(document).ready(function() {
+    $('#to_toogle').hide();
+    $("#add_restaurant").on('click', function () {
+       $('#to_toogle') .toggle();
+    });
+});
+
+
 let currentTab = 0;
 showTab(currentTab);
 
@@ -32,3 +41,5 @@ function nextPrev(n) {
     }
     showTab(currentTab);
 };
+
+

@@ -2,8 +2,11 @@ from django import forms
 from django.contrib.auth.models import User
 
 from django.core import validators
-from django.forms import PasswordInput
+from django.forms import PasswordInput, ModelForm
 from django.core.exceptions import ValidationError
+
+
+from restaurant.models import Restaurant
 
 
 class SignUpForm(forms.Form):
@@ -32,3 +35,9 @@ class SignUpForm(forms.Form):
         password2 = cleaned_data.get('password2')
         if password1 != password2:
             raise ValidationError('Password is incorrect')
+
+
+class RestaurantForm(ModelForm):
+    class Meta:
+        model = Restaurant
+        exclude = ['owner']
