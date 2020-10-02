@@ -5,8 +5,7 @@ from django.core import validators
 from django.forms import PasswordInput, ModelForm
 from django.core.exceptions import ValidationError
 
-
-from restaurant.models import Restaurant
+from restaurant.models import Restaurant, Dish
 
 
 class SignUpForm(forms.Form):
@@ -41,3 +40,9 @@ class RestaurantForm(ModelForm):
     class Meta:
         model = Restaurant
         exclude = ['owner']
+
+
+class AddMenuForm(ModelForm):
+    class Meta:
+        model = Dish
+        exclude = ['restaurant', 'toppings']

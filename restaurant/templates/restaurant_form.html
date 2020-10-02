@@ -27,8 +27,14 @@
                          <div class="card-body">
                                 <h5 class="card-title">Create restaurant profile</h5>
                                 <p class="card-text">As restaurant owner you need to register your place in our website.</p>
+                              {% if request.user in owners %}
+                              <p class="card-text">You have already registered your restaurant. Click button below to
+                                  see profile. </p>
+                             <button type="button" class="btn btn-dark">See profile</button>
+                             {% else %}
                              <button id="add_restaurant" type="button" class="btn btn-dark">Add restaurant</button>
-                        </div>
+                              {% endif %}
+                         </div>
                     </div>
         </div>
 
@@ -38,7 +44,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Add menu</h5>
                             <p class="card-text">After restaurant registration you should add positions to the menu.</p>
-                        <button type="button" class="btn btn-dark">Add menu</button>
+                        <button type="button" class="btn btn-dark"><a href="{% url 'add-menu' %}">Add menu</a></button>
+
                     </div>
                 </div>
         </div>
@@ -54,14 +61,11 @@
                 </div>
         </div>
 
-        <div class="col-sm-1"></div>
+        <div class="col-sm-2"></div>
 
-    </div>
-
-
-                   <div id="to_toogle">
-                      <div align="center">
-                       <div style="width:30%; height: auto">
+        <div class="col-sm-9">
+             <div id="to_toogle">
+                       <div style="width:35%; height: auto">
                             <div class="card bg-light mb-3">
                                 <div class="card-body">
                                     <form action="" method="post" enctype="multipart/form-data">
@@ -83,8 +87,9 @@
                                 </div>
                             </div>
                        </div>
-                      </div>
-                   </div>
+             </div>
+        </div>
+    </div>
 <br>
 <br>
 {% endblock %}
