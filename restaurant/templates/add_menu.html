@@ -1,0 +1,56 @@
+{%  extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+    background-color: 	#686868;
+}
+</style>
+    </br>
+    </br>
+
+    <div align="center">
+        <div class="card mb-3" style="max-width: 950px;">
+                <div class="row no-gutters">
+
+                    <div class="col-md-4">
+                        <img src="https://live.staticflickr.com/200/517742732_0386152429_b.jpg" class="card-img" alt="...">
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title">Add meals to the menu</h5>
+                            <hr class="my-4">
+                                <form id="regForm" method="post" action="">
+                                    {%  csrf_token %}
+
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom01">Dish name</label>
+                                                {{ form.name }}
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom02">Price</label>
+                                                {{ form.price }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom03">Dish category</label>
+                                                {{ form.category }}
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <button type="submit" class="btn btn-success">Save and continue</button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+{% endblock %}

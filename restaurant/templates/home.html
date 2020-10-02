@@ -1,36 +1,57 @@
 {%  extends 'base.html' %}
 {% block content %}
-    <div class="jumbotron">
+
+    <div style="width: auto; height: 350px;">
+        <div class="jumbotron">
         <h1 class="display-4">Hello!</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             {% if user.is_authenticated %}
-            <a class="btn btn-primary btn-lg" href="{%  url 'restaurant' %}" role="button">Add restaurant</a>
+            <a class="btn btn-primary btn-lg" href="{%  url 'restaurant' %}" role="button">Create restaurant profile</a>
             {% else %}
             <a class="btn btn-primary btn-lg" href="{%  url 'register' %}" role="button">Sign up</a>
             {% endif %}
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div align="center">
-           <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="{% url 'login' %}" class="btn btn-primary">Log in</a>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
         </div>
     </div>
+
+
+    <div class="card-group">
+
+            <div class="card" style="height: 550px;">
+                <div align="center">
+                <img src="https://live.staticflickr.com/4409/36323126265_2e7f718d54_b.jpg" class="card-img-top" alt="...">
+                     <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <a href="{% url 'login' %}" class="btn btn-success">Log in</a>
+                     </div>
+                </div>
+            </div>
+
+
+            <div class="card" style="height: 550px;">
+                <img src="https://live.staticflickr.com/8368/8547625963_2d4d313b12_b.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Get started</h5>
+                        <p class="card-text">As soon as you register your restaurant in our application, you will be able to start taking orders from quests.</p>
+                        <a href="#" class="btn btn-success">Start</a>
+                    </div>
+            </div>
+
+
+            <div class="card" style="height: 550px;">
+                <img src="https://live.staticflickr.com/236/524969586_c0e764eb36_b.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Editing restaurant profile</h5>
+                        <p class="card-text">We provide functions that help you extend your services by editing menu or adding new positions any time you like.</p>
+                        {% if user.is_authenticated %}
+                        <a href="#" class="btn btn-success">Edit menu</a>
+                        {% endif %}
+                    </div>
+            </div>
+
+    </div>
+</br>
+
 {% endblock %}
