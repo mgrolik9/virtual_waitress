@@ -9,8 +9,8 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, FormView
 
-from restaurant.models import Restaurant
-from restaurant.forms import SignUpForm, RestaurantForm, AddMenuForm
+from restaurant.models import Restaurant, Dish, Toppings
+from restaurant.forms import SignUpForm, RestaurantForm, AddMenuForm, AddToppingsForm
 
 
 class HomeView(TemplateView):
@@ -20,7 +20,7 @@ class HomeView(TemplateView):
 class RegisterView(FormView):
     template_name = 'register.html'
     form_class = SignUpForm
-    success_url = 'login/'
+    success_url = '/login'
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -81,4 +81,42 @@ class AddMenuView(LoginRequiredMixin, FormView):
 
     template_name = 'add_menu.html'
     form_class = AddMenuForm
-    success_url = 'add_menu/'
+    success_url = '/add_toppings'
+
+    def form_valid(self, form):
+        restaurant = Restaurant.objects.get(owner=self.request.user)
+        new_dish = Dish.objects.create(name=form.cleaned_data['name'],
+                                       price=form.cleaned_data['price'],
+                                       restaurant=restaurant,
+                                       category=form.cleaned_data['category'])
+
+        new_dish.save()
+        return super().form_valid(form)
+
+
+class AddToppingsView(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request):
+
+        form = AddToppingsForm()
+        toppings = Toppings.objects.all().order_by('-id')
+        return render(request, 'add_toppings.html', locals())
+
+    def post(self, request):
+
+        form = AddToppingsForm(request.POST)
+
+        if 'add_new_button' in request.POST:
+            if form.is_valid():
+
+                try:
+                    check = Toppings.objects.filter(name=form.cleaned_data['name'])
+                except Exception:
+                    new_topp = Toppings.objects.create(name=form.cleaned_data['name'],
+                                                       price=form.cleaned_data['price'])
+                    new_topp.save()
+                    return redirect(reverse_lazy('add-toppings'))
+
+                return redirect(reverse_lazy('add-toppings'))
+

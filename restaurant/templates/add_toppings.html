@@ -1,0 +1,72 @@
+{%  extends 'base.html' %}
+{% load restaurant_tags %}
+{% block content %}
+<style>
+    body {
+    background-color: 	#686868;
+}
+</style>
+    </br>
+    </br>
+
+    <div align="center">
+        <div class="card" style="width: 70%; height: auto;">
+
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Add toppings</h5>
+                        <p class="card-text">Now you can add toppings to the dish.</p>
+                            <button id="add_tops" type="button" class="btn btn-info dropdown-toggle">Add new topping</button>
+                </div>
+            </div>
+    </br>
+
+            <div id='add_toppings'>
+                <div style="width: 70%">
+
+                <form class="form-inline" action="" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group mb-2">
+                        <label for="staticEmail2">Name</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2">Price (additionally)</label>
+                        {{ form.price }}
+                    </div>
+                    <button type="submit" class="btn btn-success mb-2" name="add_new_button">Add</button>
+                </form>
+                    <hr class="my-4">
+                </div>
+            </div>
+
+
+            <div>
+            </br>
+                <div class="row">
+
+                    {% for item in toppings %}
+
+                        <div class="col-sm-3">
+
+                            <div style="width: 40px; height: 30px">
+                            <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">{{ item.name }}</label>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </br>
+            <button name="save" class="btn btn-success">Save and go back</button>
+            </br>
+            </br>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
