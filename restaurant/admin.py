@@ -18,7 +18,7 @@ class ToppingsAdmin(admin.ModelAdmin):
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'restaurant',
-                    'toppings_list', 'category')
+                    'toppings_list', 'category', 'date')
 
     def toppings_list(self, obj):
         return ', '.join([str(t) for t in obj.toppings.all()])

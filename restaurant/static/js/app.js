@@ -8,6 +8,14 @@ $(document).ready(function() {
 });
 
 
+$(document).ready(function(){
+    $('#add_toppings').hide();
+    $("#add_tops").on('click', function () {
+        $('#add_toppings').toggle();
+    });
+});
+
+
 let currentTab = 0;
 showTab(currentTab);
 

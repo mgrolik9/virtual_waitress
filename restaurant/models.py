@@ -38,6 +38,7 @@ class Dish(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     toppings = models.ManyToManyField(Toppings, related_name='dish_toppings_set', blank=True)
     category = models.IntegerField(choices=DISH_CATEGORIES, verbose_name='Kategoria dania')
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
