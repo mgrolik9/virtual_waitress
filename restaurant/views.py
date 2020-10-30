@@ -101,19 +101,23 @@ class AddToppingsView(LoginRequiredMixin, View):
 
         form = AddToppingsForm()
         toppings = Toppings.objects.all().order_by('-id')
+        try:
+            dishes = Dish.objects.filter(restaurant=Restaurant.objects.get(owner=request.user)).order_by('-date')
+        except Exception:
+            response = 'You do not have any dishes registered'
+            return render(request, 'add_toppings.html', locals())
         return render(request, 'add_toppings.html', locals())
 
     def post(self, request):
 
         form = AddToppingsForm(request.POST)
+        names = [item.name for item in Toppings.objects.all()]
 
         if 'add_new_button' in request.POST:
             if form.is_valid():
-
-                try:
-                    check = Toppings.objects.filter(name=form.cleaned_data['name'])
-                except Exception:
-                    new_topp = Toppings.objects.create(name=form.cleaned_data['name'],
+                name = form.cleaned_data['name']
+                if name not in names:
+                    new_topp = Toppings.objects.create(name=name,
                                                        price=form.cleaned_data['price'])
                     new_topp.save()
                     return redirect(reverse_lazy('add-toppings'))

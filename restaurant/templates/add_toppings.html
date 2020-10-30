@@ -45,14 +45,28 @@
 
             <div>
             </br>
+
+                {% if response %}
+                <p>{{ response }}</p>
+                {% else %}
+              <div class="form-group" style="width: 300px">
+                  <label for="exampleFormControlSelect1"><h5>Select dish</h5></label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            {% for item in dishes %}
+                            <option value={{ item }}>{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+              </div>
+                {% endif %}
+
                 <div class="row">
 
                     {% for item in toppings %}
 
                         <div class="col-sm-3">
 
-                            <div style="width: 40px; height: 30px">
-                            <input class="form-check-input" type="checkbox" value="">
+                            <div style="width: 60px; height: 45px">
+                            <input class="form-check-input" type="checkbox" value={{ item }}>
                                 <label class="form-check-label">{{ item.name }}</label>
                             </div>
 
