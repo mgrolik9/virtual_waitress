@@ -9,19 +9,20 @@
             <div class="card-body">
                 <h3 style="font-family: Lato-Light"> Log in here</h3></br>
                 <hr class="my-4">
-                <form method="post" action="">
+                 <form action="{% url 'login' %}" method="post">
                     {%  csrf_token %}
                     <div class="form-group">
-                        <label for="exampleInputUsername">Username</label>
-                             <input name="login" class="form-control" id="exampleInputUsername">
+                        <label for="exampleInputUsername">Username</label></br>
+                             {{ form.username }}
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                        <label for="exampleInputPassword1">Password</label></br>
+                            {{ form.password }}
                     </div>
-                    {% if response %}
-                    <p style="color: darkred">{{ response }}</p>
+                    {% if form.errors %}
+                    <p style="color: darkred">Account does not exist</p>
                     {% endif %}
+                    <input type="hidden" name="next" value="{{ next }}"/>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
