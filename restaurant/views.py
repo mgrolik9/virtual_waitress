@@ -31,30 +31,6 @@ class RegisterView(FormView):
         return super().form_valid(form)
 
 
-class LoginView(View):
-
-    def get(self, request):
-        return render(request, 'login.html')
-
-    def post(self, request):
-        user = authenticate(username=request.POST.get('login'),
-                            password=request.POST.get('password'))
-
-        if user is not None:
-            login(request, user)
-            return redirect(reverse_lazy('home-restaurant'))
-
-        response = 'Account not exist'
-        return render(request, 'login.html', {'response': response})
-
-
-class Logout(View):
-
-    def get(self, request):
-        logout(request)
-        return redirect(reverse_lazy('home-restaurant'))
-
-
 class CreateRestaurantView(LoginRequiredMixin, View):
     login_url = '/login/'
 

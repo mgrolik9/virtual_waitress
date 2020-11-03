@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'restaurant.apps.RestaurantConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'restaurant',
     'orders',
     'api',
     'rest_framework',
@@ -129,3 +129,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'restaurant/media/restaurants_images')
+
+LOGIN_REDIRECT_URL = 'home-restaurant'
+LOGOUT_REDIRECT_URL = 'home-restaurant'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
