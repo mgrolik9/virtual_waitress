@@ -13,8 +13,7 @@ Virtual waitress is a web application for restaurators and their clients.
 ## General info
 Virtual waitress has two sides: 
 * First for customers, who are ordering meals using an app while sitting at the table.
-* Second for owners of restaurants, who are creating restaurant profiles in order to take orders.
-
+* Second for owners, who create profile for thei restaurants to take orders from quests.
 ## Screenshots
 
 
