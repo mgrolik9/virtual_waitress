@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import mimetypes
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -134,3 +135,5 @@ LOGIN_REDIRECT_URL = 'home-restaurant'
 LOGOUT_REDIRECT_URL = 'home-restaurant'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+mimetypes.add_type('image/svg+xml', '.svg', True)

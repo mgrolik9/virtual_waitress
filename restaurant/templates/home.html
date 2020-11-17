@@ -1,4 +1,5 @@
 {%  extends 'base.html' %}
+{% load static %}
 {% block content %}
 
     <div style="width: auto; height: 350px;">
@@ -15,12 +16,11 @@
         </div>
     </div>
 
-
     <div class="card-group">
 
             <div class="card" style="height: 550px;">
                 <div align="center">
-                <img src="https://live.staticflickr.com/4409/36323126265_2e7f718d54_b.jpg" class="card-img-top" alt="...">
+                <img src="{% static 'images/scene10.svg' %}" class="card-img-top" alt="...">
                      <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -31,7 +31,7 @@
 
 
             <div class="card" style="height: 550px;">
-                <img src="https://live.staticflickr.com/8368/8547625963_2d4d313b12_b.jpg" class="card-img-top" alt="...">
+                <img src="{% static 'images/scene3.svg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Get started</h5>
                         <p class="card-text">As soon as you register your restaurant in our application, you will be able to start taking orders from quests.</p>
@@ -41,7 +41,7 @@
 
 
             <div class="card" style="height: 550px;">
-                <img src="https://live.staticflickr.com/236/524969586_c0e764eb36_b.jpg" class="card-img-top" alt="...">
+                <img src="{% static 'images/scene8.svg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Editing restaurant profile</h5>
                         <p class="card-text">We provide functions that help you extend your services by editing menu or adding new positions any time you like.</p>
@@ -52,6 +52,5 @@
             </div>
 
     </div>
-</br>
 
 {% endblock %}
