@@ -31,4 +31,3 @@ Virtual waitress has two sides:
 
 ## Status
 In progress 
-http://mgrolik9.pythonanywhere.com/
